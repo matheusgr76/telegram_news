@@ -9,7 +9,7 @@
 - `formatters/telegram_formatter.py` — chunker
 - `handlers/news_handler.py` — /news command
 - `bot.py` — polling + APScheduler 08:30 GMT-3
-- GitHub repository created and pushed: `https://github.com/matheusgr76/telegram_news`
+- GitHub repository created and pushed: `https://github.com/matheusgr76/telegram_news` (branch: `main`)
 - `groq` SDK installed and requirements updated
 - `smoke_test.py` updated for Groq
 - UI/UX: Enhanced briefing formatting with emojis and bolding
