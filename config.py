@@ -21,8 +21,8 @@ NEWSAPI_KEY: str = _require("NEWSAPI_KEY")
 THENEWSAPI_KEY: str = _require("THENEWSAPI_KEY")
 
 # LLM
-GEMINI_API_KEY: str = _require("GEMINI_API_KEY")
-GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+GROQ_API_KEY: str = _require("GROQ_API_KEY")
+GROQ_MODEL: str = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
 # Schedule (defaults to 08:30 America/Sao_Paulo)
 SCHEDULE_HOUR: int = int(os.getenv("SCHEDULE_HOUR", "8"))

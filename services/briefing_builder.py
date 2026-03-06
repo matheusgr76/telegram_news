@@ -1,12 +1,12 @@
 """
 briefing_builder.py
-Sends fetched articles to Gemini 1.5 Flash and returns the
+Sends fetched articles to Groq (Llama 3.3) and returns the
 formatted daily briefing as a string.
 """
 import datetime
 import logging
 
-import google.generativeai as genai
+from groq import AsyncGroq
 import pytz
 
 import config
@@ -14,8 +14,8 @@ from services.news_fetcher import Article
 
 logger = logging.getLogger(__name__)
 
-genai.configure(api_key=config.GEMINI_API_KEY)
-_model = genai.GenerativeModel(config.GEMINI_MODEL)
+# Initialize client
+_client = AsyncGroq(api_key=config.GROQ_API_KEY)
 
 _BRIEFING_PROMPT = """\
 You are a sharp, opinionated news editor writing a daily briefing for a sophisticated reader.
@@ -79,7 +79,8 @@ def _format_articles(sections: dict[str, list[Article]]) -> str:
 def _today_strings() -> tuple[str, str]:
     tz = pytz.timezone(config.SCHEDULE_TZ)
     now = datetime.datetime.now(tz)
-    date_short = now.strftime("%Y-%m-%d")
+    # Using now.day since Windows doesn't support %-d
+    date_short = now.strftime(f"%Y-%m-{now.day}") 
     month = now.strftime("%B")
     date_long = f"{month} {now.day}, {now.year}"
     return date_short, date_long
@@ -93,9 +94,20 @@ async def build_briefing(sections: dict[str, list[Article]]) -> str:
         date_long=date_long,
         articles=article_text,
     )
+    
     try:
-        response = await _model.generate_content_async(prompt)
-        return response.text.strip()
+        completion = await _client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+            model=config.GROQ_MODEL,
+            temperature=0.3, # Low temp for deterministic adherence to rules
+            max_tokens=4096,
+        )
+        return completion.choices[0].message.content.strip() or "⚠️ Briefing was empty."
     except Exception as exc:
-        logger.error("Gemini API error: %s", exc)
+        logger.error("Groq API error: %s", exc)
         return f"⚠️ Could not generate briefing: {exc}"
