@@ -27,29 +27,31 @@ Below are raw news articles grouped by section. Using ONLY this information, wri
 Here's your {date_long} briefing:
 
 🔥 BIGGEST STORY: [WRITE A PUNCHY TITLE IN CAPS]
-* [key development] [Source Name]
-* [key development] [Source Name]
-* [key development] [Source Name]
+📍 [key development] — **[Source Name]**
+📍 [key development] — **[Source Name]**
+📍 [key development] — **[Source Name]**
 
 💰 MARKETS
-* [key development] [Source Name]
-* [key development] [Source Name]
+📈 [key development] — **[Source Name]**
+📉 [key development] — **[Source Name]**
 
 ⚖️ US DOMESTIC
-* [key development] [Source Name]
-* [key development] [Source Name]
+🏛️ [key development] — **[Source Name]**
+🇺🇸 [key development] — **[Source Name]**
 
 📱 TECH/BUSINESS
-* [key development] [Source Name]
-* [key development] [Source Name]
+🚀 [key development] — **[Source Name]**
+💡 [key development] — **[Source Name]**
 
-TL;DR: [2-3 sharp, opinionated sentences connecting the day's biggest themes. Use your voice — be direct, add editorial weight, connect dots. No fluff.]
+TL;DR: [2-3 sharp, opinionated sentences. Use your voice — be direct, add editorial weight, connect dots. No fluff.]
 
 Rules:
 - Use ONLY facts from the articles below. Do NOT hallucinate.
 - Source name = the publication, not the URL.
-- Each bullet = one tight sentence max.
-- The TL;DR must be analytical and opinionated, not a summary bullet list.
+- Use context-aware emojis for bullets (e.g. 📊 for data, ⚖️ for law, ⚔️ for conflict) instead of fixed ones if they fit better.
+- **Bold** the source names.
+- Each item = one tight, impactful sentence.
+- The TL;DR must be analytical and opinionated.
 - Output nothing else — no preamble, no sign-off.
 
 --- ARTICLES ---

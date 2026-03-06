@@ -12,6 +12,7 @@
 - GitHub repository created and pushed: `https://github.com/matheusgr76/telegram_news`
 - `groq` SDK installed and requirements updated
 - `smoke_test.py` updated for Groq
+- UI/UX: Enhanced briefing formatting with emojis and bolding
 
 ### 🔄 In Progress — Configuration
 - [ ] Update `.env` with real `GROQ_API_KEY`
