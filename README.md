@@ -3,7 +3,7 @@
 A Telegram bot that delivers a daily news briefing in an opinionated, section-based format.
 
 ## Features
-- `/news` command — fetch briefing on demand
+- `/news` command — fetch briefing on demand (owner-only — replies are restricted to the chat ID in `TELEGRAM_CHAT_ID`)
 - Auto-push daily at **08:30 Brasília time** (GMT-3)
 - Sources: NewsAPI.org + The News API (both free tiers)
 - Summarised by Groq (Llama 3.3) into 5 fixed sections
@@ -59,3 +59,7 @@ Telegram_news/
 ├── .env.example                    # Key template
 └── requirements.txt
 ```
+
+## License
+
+MIT — see [`LICENSE`](LICENSE).
