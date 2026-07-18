@@ -44,6 +44,32 @@ python bot.py
 
 The bot will start polling and the daily schedule will be active.
 
+## Security notes
+
+- **Owner-only access:** `/news` only replies to the chat ID configured in
+  `TELEGRAM_CHAT_ID`; other users are silently ignored. This protects your
+  NewsAPI / TheNewsAPI / Groq quota (Groq usage is billable past the free
+  tier) from being triggered by strangers who find the bot.
+- **No internal errors exposed:** failures are logged server-side only; the
+  bot never echoes exception text back to a chat.
+- **LLM prompt hardening:** fetched article titles/descriptions are
+  third-party, unmoderated text. The briefing prompt fences them as
+  untrusted data and explicitly instructs the model not to follow any
+  instruction-like text found inside them (a defense against prompt
+  injection via a malicious or compromised news source — not a hard
+  guarantee, since no prompt-level defense fully eliminates this class of
+  risk).
+
+## Tests
+
+```bash
+python smoke_test.py
+```
+
+Covers date formatting, message chunking, article normalisation, and config
+loading offline; the last check makes one **live** call to Groq to confirm
+the configured model is reachable — needs a real `GROQ_API_KEY`.
+
 ## Project Structure
 ```
 Telegram_news/

@@ -9,6 +9,11 @@ import datetime
 import unittest
 from unittest.mock import AsyncMock, MagicMock, patch
 
+# Force UTF-8 stdout so the → / • / emoji in test output don't crash on
+# Windows' default cp1252 console.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 # ── 1. date formatting (the bug we just fixed) ─────────────────────────────
 
 def test_today_strings_windows_safe():
